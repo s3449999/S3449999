@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import uk.ac.tees.mad.bookish.ui.navigation.BookishNavGraph
 import uk.ac.tees.mad.bookish.ui.theme.BookishTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,11 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BookishTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Text(
-                        "Bookish",
-                        modifier = Modifier.padding(innerPadding),
-                        style = MaterialTheme.typography.displayLarge
-                    )
+                    BookishNavGraph(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
