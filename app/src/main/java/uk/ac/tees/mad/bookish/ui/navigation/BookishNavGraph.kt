@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import uk.ac.tees.mad.bookish.Screen
 import uk.ac.tees.mad.bookish.ui.SplashScreen
 import uk.ac.tees.mad.bookish.ui.auth.AuthScreen
+import uk.ac.tees.mad.bookish.ui.home.HomeScreen
 
 @Composable
 fun BookishNavGraph(
@@ -30,6 +31,7 @@ fun BookishNavGraph(
             AuthScreen(navController)
         }
         composable(Screen.Home.route) {
+            HomeScreen(navController)
         }
         composable(
             route = Screen.BookDetails.route,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597832345594",
+    "project_id": "bookish-7baa2",
+    "storage_bucket": "bookish-7baa2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597832345594:android:3271cda4e5cc483e582643",
+        "android_client_info": {
+          "package_name": "uk.ac.tees.mad.bookish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkzn5n_UEQuoS6scpsbBvPD6be1S5arcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
