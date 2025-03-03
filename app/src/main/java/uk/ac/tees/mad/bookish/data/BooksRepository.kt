@@ -1,6 +1,7 @@
 package uk.ac.tees.mad.bookish.data
 
 import com.google.firebase.firestore.FirebaseFirestore
+import uk.ac.tees.mad.bookish.domain.BookItem
 import uk.ac.tees.mad.bookish.domain.BooksResponse
 
 class BooksRepository(
@@ -16,4 +17,6 @@ class BooksRepository(
             Result.failure(e)
         }
     }
+
+
 }

@@ -1,5 +1,6 @@
 package uk.ac.tees.mad.bookish.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
@@ -66,6 +67,10 @@ class HomeViewModel(
                 when {
                     result.isSuccess -> {
                         trendingBooks.addAll(result.getOrNull()?.items ?: emptyList())
+                        Log.d(
+                            "HomeViewModel",
+                            "Fetched ${result.getOrNull()?.items?.size} books for category: $category"
+                        )
                     }
 
                     else -> {
@@ -79,7 +84,7 @@ class HomeViewModel(
 
             _homeState.value = HomeScreenState.Success(
                 searchResults = emptyList(),
-                trendingBooks = trendingBooks.shuffled().take(10)
+                trendingBooks = trendingBooks.shuffled()
             )
         }
     }

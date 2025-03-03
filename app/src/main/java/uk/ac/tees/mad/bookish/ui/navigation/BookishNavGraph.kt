@@ -37,6 +37,8 @@ fun BookishNavGraph(
             route = Screen.BookDetails.route,
             arguments = listOf(navArgument("bookId") { type = NavType.StringType })
         ) {
+            val bookId = it.arguments?.getString("bookId") ?: ""
+
         }
         composable(Screen.Favorites.route) {
         }

@@ -3,6 +3,7 @@ package uk.ac.tees.mad.bookish.data
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import uk.ac.tees.mad.bookish.domain.BookItem
 import uk.ac.tees.mad.bookish.domain.BooksResponse
 
 interface GoogleBooksApi {
