@@ -18,5 +18,12 @@ class BooksRepository(
         }
     }
 
-
+    suspend fun getBookDetails(bookId: String): Result<BookItem> {
+        return try {
+            val response = api.getBookDetails(bookId)
+            Result.success(response)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

@@ -14,4 +14,6 @@ interface GoogleBooksApi {
         @Query("maxResults") maxResults: Int = 20
     ): BooksResponse
 
+    @GET("volumes/{bookId}")
+    suspend fun getBookDetails(@Path("bookId") bookId: String): BookItem
 }

@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import uk.ac.tees.mad.bookish.Screen
 import uk.ac.tees.mad.bookish.ui.SplashScreen
 import uk.ac.tees.mad.bookish.ui.auth.AuthScreen
+import uk.ac.tees.mad.bookish.ui.details.BookDetailsScreen
 import uk.ac.tees.mad.bookish.ui.home.HomeScreen
 
 @Composable
@@ -38,7 +39,7 @@ fun BookishNavGraph(
             arguments = listOf(navArgument("bookId") { type = NavType.StringType })
         ) {
             val bookId = it.arguments?.getString("bookId") ?: ""
-
+            BookDetailsScreen(navController, bookId)
         }
         composable(Screen.Favorites.route) {
         }
