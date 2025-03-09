@@ -274,7 +274,7 @@ private fun BookItem(
 }
 
 @Composable
-private fun ErrorView(message: String) {
+fun ErrorView(message: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.firebase.auth.FirebaseAuth
 import uk.ac.tees.mad.bookish.Screen
 import uk.ac.tees.mad.bookish.ui.SplashScreen
 import uk.ac.tees.mad.bookish.ui.auth.AuthScreen
@@ -18,7 +19,11 @@ import uk.ac.tees.mad.bookish.ui.home.HomeScreen
 fun BookishNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.Splash.route
+    startDestination: String = if (FirebaseAuth.getInstance().currentUser != null) {
+        Screen.Home.route
+    } else {
+        Screen.Splash.route
+    }
 ) {
     NavHost(
         navController = navController,
@@ -39,7 +44,7 @@ fun BookishNavGraph(
             arguments = listOf(navArgument("bookId") { type = NavType.StringType })
         ) {
             val bookId = it.arguments?.getString("bookId") ?: ""
-            BookDetailsScreen(navController, bookId)
+            BookDetailsScreen(bookId, navController)
         }
         composable(Screen.Favorites.route) {
         }
