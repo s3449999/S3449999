@@ -40,19 +40,19 @@ class BookDetailsViewModel(
 //        }
 //    }
 
-//    fun toggleFavorite() {
-//        viewModelScope.launch {
-//            val currentState = bookState.value
-//            if (currentState is BookDetailsState.Success) {
-//                val book = currentState.book
-//                if (_isFavorite.value) {
-//                    booksRepository.removeFromFavorites(book.id)
-//                } else {
-//                    booksRepository.addToFavorites(book)
-//                }
-//            }
-//        }
-//    }
+    fun toggleFavorite() {
+        viewModelScope.launch {
+            val currentState = bookState.value
+            if (currentState is BookDetailsState.Success) {
+                val book = currentState.book
+                if (_isFavorite.value) {
+                    booksRepository.removeFromFavorites(book.id)
+                } else {
+                    booksRepository.addToFavorites(book)
+                }
+            }
+        }
+    }
 }
 
 sealed class BookDetailsState {

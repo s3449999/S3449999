@@ -47,8 +47,6 @@ import uk.ac.tees.mad.bookish.ui.BookDetailsState
 import uk.ac.tees.mad.bookish.ui.BookDetailsViewModel
 import uk.ac.tees.mad.bookish.ui.home.ErrorView
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookDetailsScreen(
     bookId: String,
@@ -62,9 +60,11 @@ fun BookDetailsScreen(
         viewModel.loadBookDetails(bookId)
     }
 
-    Column(
-    ) {
-        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+    Column() {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(Icons.Default.ArrowBack, "Back")
             }
@@ -74,7 +74,7 @@ fun BookDetailsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("Book Details", style = MaterialTheme.typography.titleLarge)
-                IconButton(onClick = {}) {
+                IconButton(onClick = { viewModel.toggleFavorite() }) {
                     Icon(
                         if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                         contentDescription = "Favorite",
