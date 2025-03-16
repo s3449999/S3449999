@@ -1,9 +1,10 @@
-package uk.ac.tees.mad.bookish.ui
+package uk.ac.tees.mad.bookish.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import uk.ac.tees.mad.bookish.data.BooksRepository
 import uk.ac.tees.mad.bookish.domain.BookItem
@@ -22,7 +23,7 @@ class BookDetailsViewModel(
             try {
                 val bookDetails = booksRepository.getBookDetails(bookId).getOrThrow()
                 _bookState.value = BookDetailsState.Success(bookDetails)
-//                checkIfFavorite(bookId)
+                checkIfFavorite(bookId)
             } catch (e: Exception) {
                 _bookState.value =
                     BookDetailsState.Error(e.message ?: "Failed to load book details")
@@ -30,15 +31,15 @@ class BookDetailsViewModel(
         }
     }
 
-//    private fun checkIfFavorite(bookId: String) {
-//        viewModelScope.launch {
-//            booksRepository.getFavorites()
-//                .map { favorites -> favorites.any { it.id == bookId } }
-//                .collect { isFavorite ->
-//                    _isFavorite.value = isFavorite
-//                }
-//        }
-//    }
+    private fun checkIfFavorite(bookId: String) {
+        viewModelScope.launch {
+            booksRepository.getFavorites()
+                .map { favorites -> favorites.any { it.id == bookId } }
+                .collect { isFavorite ->
+                    _isFavorite.value = isFavorite
+                }
+        }
+    }
 
     fun toggleFavorite() {
         viewModelScope.launch {

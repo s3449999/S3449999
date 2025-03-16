@@ -2,6 +2,9 @@ package uk.ac.tees.mad.bookish.data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import uk.ac.tees.mad.bookish.domain.BookItem
 import uk.ac.tees.mad.bookish.domain.BooksResponse
 
@@ -44,6 +47,29 @@ class BooksRepository(
                 .collection("books")
                 .document(bookId)
                 .delete()
+        }
+    }
+
+    fun getFavorites(): Flow<List<BookItem>> = callbackFlow {
+        auth.currentUser?.uid?.let { userId ->
+            val subscription = favoritesCollection.document(userId)
+                .collection("books")
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null) {
+                        close(error)
+                        return@addSnapshotListener
+                    }
+
+                    val books = snapshot?.documents?.mapNotNull {
+                        it.toObject(BookItem::class.java)
+                    } ?: emptyList()
+                    trySend(books)
+                }
+
+            awaitClose { subscription.remove() }
+        } ?: run {
+            trySend(emptyList())
+            close()
         }
     }
 
