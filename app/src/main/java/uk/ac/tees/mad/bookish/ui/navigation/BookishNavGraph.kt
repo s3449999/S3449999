@@ -13,6 +13,7 @@ import uk.ac.tees.mad.bookish.Screen
 import uk.ac.tees.mad.bookish.ui.SplashScreen
 import uk.ac.tees.mad.bookish.ui.auth.AuthScreen
 import uk.ac.tees.mad.bookish.ui.details.BookDetailsScreen
+import uk.ac.tees.mad.bookish.ui.favorite.FavoriteScreen
 import uk.ac.tees.mad.bookish.ui.home.HomeScreen
 
 @Composable
@@ -47,6 +48,7 @@ fun BookishNavGraph(
             BookDetailsScreen(bookId, navController)
         }
         composable(Screen.Favorites.route) {
+            FavoriteScreen(navController)
         }
         composable(Screen.Profile.route) {
         }
