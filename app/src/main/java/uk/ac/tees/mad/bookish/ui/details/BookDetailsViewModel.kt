@@ -1,5 +1,7 @@
 package uk.ac.tees.mad.bookish.ui.details
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,8 +12,10 @@ import uk.ac.tees.mad.bookish.data.BooksRepository
 import uk.ac.tees.mad.bookish.domain.BookItem
 
 class BookDetailsViewModel(
-    private val booksRepository: BooksRepository = BooksRepository()
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
+    private val booksRepository: BooksRepository = BooksRepository(application)
+
     private val _bookState = MutableStateFlow<BookDetailsState>(BookDetailsState.Loading)
     val bookState = _bookState.asStateFlow()
 

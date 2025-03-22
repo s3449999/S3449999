@@ -1,5 +1,7 @@
 package uk.ac.tees.mad.bookish.ui.favorite
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,8 +12,10 @@ import uk.ac.tees.mad.bookish.data.BooksRepository
 import uk.ac.tees.mad.bookish.domain.BookItem
 
 class FavoritesViewModel(
-    private val booksRepository: BooksRepository = BooksRepository()
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
+    private val booksRepository: BooksRepository = BooksRepository(application)
+
     private val _favoritesState = MutableStateFlow<FavoritesState>(FavoritesState.Loading)
     val favoritesState = _favoritesState.asStateFlow()
 

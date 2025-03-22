@@ -1,6 +1,8 @@
 package uk.ac.tees.mad.bookish.ui.home
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
@@ -12,8 +14,10 @@ import uk.ac.tees.mad.bookish.data.BooksRepository
 import uk.ac.tees.mad.bookish.domain.BookItem
 
 class HomeViewModel(
-    private val booksRepository: BooksRepository = BooksRepository()
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
+    private val booksRepository: BooksRepository = BooksRepository(application)
+
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
 
