@@ -15,6 +15,7 @@ import uk.ac.tees.mad.bookish.ui.auth.AuthScreen
 import uk.ac.tees.mad.bookish.ui.details.BookDetailsScreen
 import uk.ac.tees.mad.bookish.ui.favorite.FavoriteScreen
 import uk.ac.tees.mad.bookish.ui.home.HomeScreen
+import uk.ac.tees.mad.bookish.ui.profile.ProfileScreen
 
 @Composable
 fun BookishNavGraph(
@@ -51,6 +52,7 @@ fun BookishNavGraph(
             FavoriteScreen(navController)
         }
         composable(Screen.Profile.route) {
+            ProfileScreen(navController)
         }
     }
 }
