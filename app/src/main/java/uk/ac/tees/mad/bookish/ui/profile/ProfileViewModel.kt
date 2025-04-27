@@ -74,7 +74,6 @@ class ProfileViewModel(
                         .update(userData as Map<String, Any>)
                         .await()
 
-                    // Update local preferences
                     val updatedPrefs = UserPreferences(
                         userId = user.uid,
                         name = name,
